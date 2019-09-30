@@ -25,6 +25,8 @@ public class Server {
         return instance;
     }
 
+    static int i = 0;
+
     private Server(){
 
     }
@@ -54,7 +56,8 @@ public class Server {
 
                 System.out.println("Assigning new thread for this client");
 
-                ClientHandler clientHandler = new ClientHandler(s, name, dis, dos);
+                //skaber et nyt handler objekt for håndtering af request
+                ClientHandler clientHandler = new ClientHandler(s, "client " + i, dis, dos);
 
                 // create a new thread object
                 Thread t = new Thread(clientHandler);
@@ -63,9 +66,14 @@ public class Server {
                 vc.add(clientHandler);
                 dos.writeUTF("J_OK");
 
+                //tilføjer til listen af aktiver clienter
+                vc.add(clientHandler);
 
                 // Starter tråden(thread)
                 t.start();
+
+                //increment i for nye klienter
+                i++;
 
 
         }

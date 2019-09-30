@@ -32,10 +32,10 @@ public class ClientRun {
         String line = skanner.nextLine();
 
         //token til at dele input
-        String[] tokens = line.split(" :");
+        String[] token = line.split(" :");
 
         //Tester input om det overholder protokol
-        if(tokens[0].equals("JOIN")){
+        if(token[0].equals("JOIN")){
 
             InetAddress ip = InetAddress.getByName("");
 
