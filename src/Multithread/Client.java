@@ -25,7 +25,6 @@ public class Client {
         this.ip = ip;
     }
 
-
     /**
      * Metoden for klienten
      * Klienterne får tildelt en socket fra clientmain
