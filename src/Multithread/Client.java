@@ -52,9 +52,11 @@ public class Client {
             public void run() {
                 while (true) {
 
-                    try {
+
+                        //read the message to deliver.
                         String msg = skanner.nextLine();
 
+                    try {
                         dos.writeUTF(msg);
 
                     } catch (IOException e) {
@@ -67,7 +69,6 @@ public class Client {
 
         //tråd til at modtage beskeder
         Thread readMessage = new Thread(new Runnable() {
-
             @Override
             public void run() {
 

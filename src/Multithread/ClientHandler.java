@@ -16,8 +16,8 @@ import java.net.*;
 public class ClientHandler implements Runnable {
 
     String name;
-    final DataInputStream dis;
-    final DataOutputStream dos;
+    DataInputStream dis;
+    DataOutputStream dos;
     Socket s;
     boolean isloggedin;
 
@@ -50,11 +50,10 @@ public class ClientHandler implements Runnable {
                     break;
                 }
 
-
                 //StringTokenizer deler en string op og angiver den en delimiter
                 StringTokenizer stringTokenizer = new StringTokenizer(received, ":");
                 String MsgToSend = stringTokenizer.nextToken();
-                String client = stringTokenizer.nextToken();
+                String name = stringTokenizer.nextToken();
 
 
                 //Tjekker for alle clienthandler objekter i vector
@@ -79,8 +78,8 @@ public class ClientHandler implements Runnable {
 
             }
 
-        }
+         }
 
-        }
+      }
 
     }

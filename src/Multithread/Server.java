@@ -50,11 +50,11 @@ public class Server {
                 // obtaining input and out streams
                 DataInputStream dis = new DataInputStream(s.getInputStream());
                 DataOutputStream dos = new DataOutputStream(s.getOutputStream());
-                String userName = dis.readUTF();
+                String name = dis.readUTF();
 
                 System.out.println("Assigning new thread for this client");
 
-                ClientHandler clientHandler = new ClientHandler(s, userName, dis, dos);
+                ClientHandler clientHandler = new ClientHandler(s, name, dis, dos);
 
                 // create a new thread object
                 Thread t = new Thread(clientHandler);
