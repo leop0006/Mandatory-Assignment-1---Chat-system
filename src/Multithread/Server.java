@@ -1,10 +1,16 @@
 package Multithread;
 
-import javax.naming.Name;
 import java.io.*;
-import java.text.*;
 import java.util.*;
 import java.net.*;
+
+/**
+ *
+ * Chat system der tillader flere klienter/brugere at kunne skrive med hinanden
+ *
+ * @author Leopold berggreen nguessan
+ *
+ */
 
 public class Server {
 

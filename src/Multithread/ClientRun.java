@@ -14,7 +14,7 @@ import java.net.UnknownHostException;
  *
  */
 
-public class ClientMain {
+public class ClientRun {
 
     /**
      * Main metode til at køre klienter
@@ -41,7 +41,7 @@ public class ClientMain {
 
             int serverPort = 1414;
 
-            //instantierer og kører clienten med serverport og ip  
+            //instantierer og kører clienten med serverport og ip
             Client client = new Client(serverPort, ip);
             client.runClient();
         }

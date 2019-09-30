@@ -37,7 +37,7 @@ public class Client {
     public void runClient() throws IOException {
         Scanner skanner = new Scanner(System.in);
 
-        // Skaber forbindelse med serverporten og bed og dit navn
+        // Skaber forbindelse med serverporten og beder om dit userName
         Socket s = new Socket(ip, ServerPort);
         System.out.println("Enter your username");
 
