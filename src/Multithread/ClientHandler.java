@@ -32,6 +32,7 @@ public class ClientHandler implements Runnable {
     }
 
     //run metode til oprettelsen af objekt af klassen
+    @Override
     public void run() {
         String received;
 
@@ -50,15 +51,15 @@ public class ClientHandler implements Runnable {
                     break;
                 }
 
+
                 //StringTokenizer deler en string op og angiver den en delimiter
                 StringTokenizer stringTokenizer = new StringTokenizer(received, ":");
                 String MsgToSend = stringTokenizer.nextToken();
                 String name = stringTokenizer.nextToken();
 
-
                 //Tjekker for alle clienthandler objekter i vector
-                for(ClientHandler ch : Server.vc){
-                    if(ch.name.equals(name) && ch.isloggedin == true){
+                for (ClientHandler ch : Server.vc) {
+                    if (ch.name.equals(name) && ch.isloggedin == true) {
                         ch.dos.writeUTF(this.name + " : " + MsgToSend);
                         break;
                     }
@@ -68,6 +69,7 @@ public class ClientHandler implements Runnable {
                 e.printStackTrace();
             }
 
+        }
             try {
                 // closing resources
                 this.dis.close();
@@ -77,9 +79,6 @@ public class ClientHandler implements Runnable {
                 e.printStackTrace();
 
             }
-
-         }
-
       }
 
     }

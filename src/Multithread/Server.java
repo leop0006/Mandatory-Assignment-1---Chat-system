@@ -57,7 +57,7 @@ public class Server {
                 System.out.println("Assigning new thread for this client");
 
                 //skaber et nyt handler objekt for håndtering af request
-                ClientHandler clientHandler = new ClientHandler(s, "client " + i, dis, dos);
+                ClientHandler clientHandler = new ClientHandler(s, name, dis, dos);
 
                 // create a new thread object
                 Thread t = new Thread(clientHandler);
@@ -72,7 +72,7 @@ public class Server {
                 // Starter tråden(thread)
                 t.start();
 
-                //increment i for nye klienter
+
                 i++;
 
 

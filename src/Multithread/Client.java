@@ -20,9 +20,8 @@ public class Client {
     InetAddress ip;
 
 
-
     public Client(int serverPort, InetAddress ip) {
-        ServerPort = serverPort;
+        this.ServerPort = serverPort;
         this.ip = ip;
     }
 

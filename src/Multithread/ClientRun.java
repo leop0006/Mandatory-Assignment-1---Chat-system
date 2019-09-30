@@ -28,7 +28,7 @@ public class ClientRun {
         Scanner skanner = new Scanner(System.in);
 
         //Modtage input fra brugeren(følger kun protokol)
-        System.out.println("JOIN ip:serverport");
+        System.out.println("JOIN <<<ip>>>:<<<serverport>>>");
         String line = skanner.nextLine();
 
         //token til at dele input
