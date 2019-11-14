@@ -15,6 +15,7 @@ import java.net.*;
 // ClientHandler class
 public class ClientHandler implements Runnable {
 
+
     String name;
     DataInputStream dis;
     DataOutputStream dos;
@@ -36,12 +37,25 @@ public class ClientHandler implements Runnable {
     public void run() {
         String received;
 
+
         while (true) {
 
             try {
 
+
                 //modtager besked
                 received = dis.readUTF();
+
+                //printer en liste ud af aktive bruger der er tilsluttede sig til serveren(protokol)
+                if(received.equals("LIST")){
+                    for(ClientHandler ch : Server.vc) {
+                        dos.writeUTF(ch.name);
+                    }
+                    continue;
+                }
+
+
+
 
                 //Disconnector en bruger hvis de skriver QUIT(protokol)
                 if (received.equals("QUIT")) {
@@ -55,14 +69,16 @@ public class ClientHandler implements Runnable {
                 //StringTokenizer deler en string op og angiver den en delimiter
                 StringTokenizer stringTokenizer = new StringTokenizer(received, ":");
                 String MsgToSend = stringTokenizer.nextToken();
-                String name = stringTokenizer.nextToken();
+                String client = stringTokenizer.nextToken();
+
 
                 //Tjekker for alle clienthandler objekter i vector
                 for (ClientHandler ch : Server.vc) {
-                    if (ch.name.equals(name) && ch.isloggedin == true) {
+                    if (ch.name.equals(client) && ch.isloggedin == true) {
                         ch.dos.writeUTF(this.name + " : " + MsgToSend);
                         break;
                     }
+
                 }
 
             } catch (IOException e) {
@@ -81,4 +97,5 @@ public class ClientHandler implements Runnable {
             }
       }
 
-    }
+
+}

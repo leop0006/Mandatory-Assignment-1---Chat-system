@@ -37,7 +37,7 @@ public class ClientRun {
         //Tester input om det overholder protokol
         if(token[0].equals("JOIN")){
 
-            InetAddress ip = InetAddress.getByName("");
+            InetAddress ip = InetAddress.getByName("localhost");
 
             int serverPort = 1414;
 
@@ -46,5 +46,7 @@ public class ClientRun {
             client.runClient();
         }
     }
+
+
 
 }

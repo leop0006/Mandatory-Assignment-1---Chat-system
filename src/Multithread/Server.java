@@ -14,38 +14,27 @@ import java.net.*;
 
 public class Server {
 
-    private static Server instance;
+    private final static int MAX_CHAR_NAME = 12;
 
-    private static Server getInstance() {
-
-        if(instance == null){
-            instance = new Server();
-        }
-
-        return instance;
-    }
-
-    static int i = 0;
-
-    private Server(){
-
-    }
 
     static Vector<ClientHandler> vc = new Vector<>();
 
-    public static void main(String[] args) throws IOException
-    {
-        // server is listening on port 1414
-        ServerSocket ss = new ServerSocket(1414);
+    public static void main(String[] args) throws IOException {
+        System.out.println("Server is running...");
 
-        Socket s;
+        try {
+            // server is listening on port 1414
+            ServerSocket ss = new ServerSocket(1414);
 
-        // running infinite loop for getting
-        // client request
-        while (true)
-        {
-            // socket object to receive incoming client requests
-            s = ss.accept();
+            System.out.println("Server is currently listening on port " + ss);
+
+            Socket s;
+
+            // running infinite loop for getting
+            // client request
+            while (true) {
+                // socket object to receive incoming client requests
+                s = ss.accept();
 
                 System.out.println("A new client is connected : " + s);
 
@@ -63,17 +52,39 @@ public class Server {
                 Thread t = new Thread(clientHandler);
 
                 System.out.println("New user has been added to your channel");
-                vc.add(clientHandler);
-                dos.writeUTF("J_OK");
+
+                /*for (ClientHandler ch : Server.vc) {
+                    if (ch.name.length() <= MAX_CHAR_NAME) {
+                        dos.writeUTF("J_OK");
+
+                    }
+
+                   else {
+                        dos.writeUTF("J_ER : Your name is too long. Try to reconnect with a shorter name");
+                    }
+
+                }*/
+
 
                 //tilføjer til listen af aktiver clienter
-                vc.add(clientHandler);
+
+                if (clientHandler.name.length() <= MAX_CHAR_NAME) {
+                    vc.add(clientHandler);
+                    dos.writeUTF("J_OK");
+                } else {
+                    dos.writeUTF("J_ER : Your name is too long. Reconnect with a name under 12 characters");
+                }
+
 
                 // Starter tråden(thread)
                 t.start();
 
 
-                i++;
+            }
+
+        } catch (IOException e) {
+            System.err.println("IOException");
+            e.printStackTrace();
 
         }
     }

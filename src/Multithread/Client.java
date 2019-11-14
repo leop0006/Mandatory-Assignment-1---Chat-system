@@ -15,6 +15,7 @@ import java.util.Scanner;
 // Client class
 public class Client {
 
+    private final static int USERNAME_MAX_CHAR = 12;
     int ServerPort;
     // getting localhost ip
     InetAddress ip;
@@ -51,10 +52,11 @@ public class Client {
                 while (true) {
 
 
-                        //read the message to deliver.
-                        String msg = skanner.nextLine();
 
                     try {
+                        //læser beskeden der bliver sendt
+                        String msg = skanner.nextLine();
+
                         dos.writeUTF(msg);
 
                     } catch (IOException e) {
@@ -79,7 +81,7 @@ public class Client {
                     } catch (IOException e) {
 
                         System.out.println("User has left your channel");
-                        break;
+                        e.printStackTrace();
 
                     }
                 }
